@@ -50,8 +50,8 @@ public class Controller implements Initializable {
 
         System.out.println(canvas.getHeight()+" "+canvas.getWidth());
 
-        wysokosc = canvas.getHeight()/liczbaKomorekWysokosc;   // wysokosć siatki ( oś x )
-        szerokosc = canvas.getWidth()/liczbaKomorekSzerokosc;  // szerokość siatki ( oś y )
+        wysokosc = canvas.getHeight()/liczbaKomorekWysokosc;   // wysokosć dla komorki siatki ( oś x )
+        szerokosc = canvas.getWidth()/liczbaKomorekSzerokosc;  // szerokość dla komorki siatki ( oś y )
 
         siatka = new Cell[liczbaKomorekWysokosc][liczbaKomorekSzerokosc] ;  //tworzenie tablicy
 
@@ -69,11 +69,13 @@ public class Controller implements Initializable {
 
         for(int i=0;i<liczbaKomorekWysokosc;i++)
             for(int j=0;j<liczbaKomorekSzerokosc;j++)
-            for (int k=0;k<9;k++)
             {
-                graphicsContext.setFill( map.get(siatka[i][j][k].getStan()) );
+                graphicsContext.setFill( map.get(siatka[i][j].getStan()) );
                 graphicsContext.fillRect(i*szerokosc, j*wysokosc, szerokosc, wysokosc);  // przedstawienie początkowego stanu materiału
             }
+
+        System.out.println("Wysokosc komorki :"+wysokosc+"  "+"Szerokosc komorki : "+szerokosc);
+        System.out.println("Liczba komorek wysokosc "+liczbaKomorekWysokosc+"Liczba komorek szerokosc :"+liczbaKomorekSzerokosc);
 
     }
 
@@ -83,9 +85,9 @@ public class Controller implements Initializable {
         System.out.println("Start");
         start = true;
 
-        new Thread(() -> {
+ //       new Thread(() -> {
 //            for (int i = 0; /*i < 25*/; i++) {
-                if (start) {
+             //   if (start) {
                     siatka=D2Q9.metodaBoltzmann(siatka);     //wyliczenie nowej tablicy na podstawie wstępnej
 
 //                    engine.nextGeneration();
@@ -95,10 +97,10 @@ public class Controller implements Initializable {
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
-                }
+ //               }
 
 //            }
-        }).start();
+//        }).start();
 
     }
 
