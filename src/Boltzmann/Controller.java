@@ -85,10 +85,12 @@ public class Controller implements Initializable {
         System.out.println("Start");
         start = true;
 
+        for (int i=0;i<10;i++)
+            siatka=D2Q9.metodaBoltzmann(siatka,i);     //wyliczenie nowej tablicy na podstawie wstępnej
+
  //       new Thread(() -> {
 //            for (int i = 0; /*i < 25*/; i++) {
              //   if (start) {
-                    siatka=D2Q9.metodaBoltzmann(siatka);     //wyliczenie nowej tablicy na podstawie wstępnej
 
 //                    engine.nextGeneration();
 //                    Platform.runLater(this::printWholeStructure);
@@ -113,9 +115,6 @@ public class Controller implements Initializable {
         double poleX=wartoscX/wysokosc;
         double poleY=wartoscY/szerokosc;
 
-        System.out.println(wartoscX +" "+ wartoscY+" "+poleX+" "+poleY );
-
-
         if(poleX == 0 || poleX==liczbaKomorekWysokosc)
         {
             labelStan.setText("IZOLACJA");
@@ -126,6 +125,8 @@ public class Controller implements Initializable {
             labelStan.setText(siatka[(int) poleX][(int) poleY].getStan());
             labelTemperatura.setText(String.valueOf(siatka[(int) poleX][(int) poleY].getTemperatura()));
         }
+
+        System.out.println(wartoscX +" "+ wartoscY+" "+(int)poleX+" "+(int)poleY );
 
     }
 
